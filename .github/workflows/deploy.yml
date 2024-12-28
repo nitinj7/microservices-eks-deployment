@@ -44,6 +44,11 @@ jobs:
 
       - name: Update Kubernetes configuration
         run: |
+          aws eks --region us-east-1 update-kubeconfig --name microservice-cluster
           kubectl apply -f k8s-configs/frontend.yaml
           kubectl apply -f k8s-configs/backend.yaml
           kubectl apply -f k8s-configs/database.yaml
+
+      - name: Get Pod names with status
+        run: |
+          kubectl get pods
